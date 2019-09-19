@@ -22,6 +22,8 @@ with open(csv_path, newline="") as csv_file:
     # set statistical variables
     total_months = 0 # Total Month of financial data
     total_PnL_amount = 0   # Net Profit / Loss
+    total_PnL_change = 0    # Total Change in Value
+    previous_month_PnL = 0
     great_inc_profit_month = ""    # Month of greatest increase in profits
     great_inc_profit_amount = float("-inf")    # greatest increase in profits by value
 
@@ -35,9 +37,16 @@ with open(csv_path, newline="") as csv_file:
 
         #Task 1: The total number of months included in the dataset
         total_months = total_months + 1
-        
+
         #Task 2: The net total amount of "Profit/Losses" over the entire period
         total_PnL_amount = total_PnL_amount + fin_PnL_amount
+
+        #Start calculating the total change amount begining the second record month
+        if total_months >= 2:
+            total_PnL_change = total_PnL_change + (fin_PnL_amount - previous_month_PnL)
+        
+        #Set value previous month Profit and Loss for next itration
+        previous_month_PnL = fin_PnL_amount
         
         #Task 4: The greatest increase in profits (date and amount) over the entire period
         if great_inc_profit_amount < fin_PnL_amount:
@@ -51,8 +60,8 @@ with open(csv_path, newline="") as csv_file:
 
 
 #Task 3: The average of the changes in "Profit/Losses" over the entire period
-if total_months != 0:
-    average_change_amount = total_PnL_amount / total_months
+if (total_months - 1) != 0:
+    average_change_amount = total_PnL_change / (total_months - 1)
 else:
     average_change_amount = 0
 
