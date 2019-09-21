@@ -11,7 +11,7 @@ import os
 import csv
 
 # Set path for data file
-csv_path = os.path.join("..", "..", "Resources", "election_data.csv")
+csv_path = os.path.join("..", "Resources", "election_data.csv")
 
 # Open the CSV
 with open(csv_path, newline="") as csv_file: 
