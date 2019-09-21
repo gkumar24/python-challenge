@@ -24,7 +24,7 @@ with open(csv_path, newline="") as csv_file:
     # set statistical variables
     total_votes = 0     # Total Votes casted
     candidate_list = {} # Dictionary that holds the Candidates and their votes
-    winner_name = ""
+    winner_name = ""    # For storing the winner
     
     # reading each row of data, after header, each row is a "List"
     for row in csv_reader:
@@ -43,12 +43,15 @@ with open(csv_path, newline="") as csv_file:
             #if candidate not in list, add new key for the canditate, and the initial count
             candidate_list.update({candidate_name : 1})
 
+        #if no winner, assume the first canditate as the winner
         if winner_name == "":
             winner_name = candidate_name
 
+        #Compare the count, to set the winner. 
         if float(candidate_list[winner_name]) < float(candidate_list[candidate_name]):
             winner_name = candidate_name
 
+#Print the result
 print("Election Results")
 print("-------------------------")
 print("Total Votes: {:,}".format(total_votes))
@@ -59,6 +62,7 @@ print("-------------------------")
 print(f"Winner: {winner_name}")
 print("-------------------------")
 
+#create the text file, with the results. 
 txt_path = open("PyPoll_Output.txt","w")
 txt_path.write("Election Results\n")
 txt_path.write("-------------------------\n")
