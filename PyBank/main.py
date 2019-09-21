@@ -2,8 +2,8 @@
 ## Python script for analyzing the financial records of your company
 ## Financial data: budget_data.csv. Data Columns: Date and Profit/Losses. 
 ## Tasks to calculate: Total Months of Data, Net amount Profit/Loss, 
-##   Average Profit/Loss, Greatest increase in Profit, Greatest decrease in losses.
-
+##      Average Profit/Loss, Greatest increase in Profit, Greatest decrease in losses.
+##      Print Output, and export to text file. 
 # Modules
 import os
 import csv
