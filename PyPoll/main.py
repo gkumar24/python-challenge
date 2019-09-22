@@ -11,7 +11,7 @@ import os
 import csv
 
 # Set path for data file
-csv_path = os.path.join("..", "Resources", "election_data.csv")
+csv_path = os.path.join("Resources", "election_data.csv")
 
 # Open the CSV
 with open(csv_path, newline="") as csv_file: 
@@ -25,6 +25,7 @@ with open(csv_path, newline="") as csv_file:
     total_votes = 0     # Total Votes casted
     candidate_list = {} # Dictionary that holds the Candidates and their votes
     winner_name = ""    # For storing the winner
+    winner_count = 0    # for storing and comparing the votes
     
     # reading each row of data, after header, each row is a "List"
     for row in csv_reader:
@@ -47,9 +48,10 @@ with open(csv_path, newline="") as csv_file:
         if winner_name == "":
             winner_name = candidate_name
 
-        #Compare the count, to set the winner. 
-        if float(candidate_list[winner_name]) < float(candidate_list[candidate_name]):
-            winner_name = candidate_name
+        # Compare the count, to set the winner.
+        # Commented the code, since the comparision can be done, once the counts are final.  
+        #if float(candidate_list[winner_name]) < float(candidate_list[candidate_name]):
+        #    winner_name = candidate_name
 
 #Print the result
 print("Election Results")
@@ -57,6 +59,9 @@ print("-------------------------")
 print("Total Votes: {:,}".format(total_votes))
 print("-------------------------")
 for (key, value) in candidate_list.items():
+    if winner_count < value:
+        winner_name = key
+        winner_count = value
     print("{}: {:.2%} ({:,})".format(key,float(value)/total_votes,value))
 print("-------------------------")
 print(f"Winner: {winner_name}")
