@@ -44,12 +44,11 @@ with open(csv_path, newline="") as csv_file:
             #if candidate not in list, add new key for the canditate, and the initial count
             candidate_list.update({candidate_name : 1})
 
-        #if no winner, assume the first canditate as the winner
-        if winner_name == "":
-            winner_name = candidate_name
-
         # Compare the count, to set the winner.
-        # Commented the code, since the comparision can be done, once the counts are final.  
+        # Commented the code, since the comparision can be done, once the counts are final. 
+        #if no winner, assume the first canditate as the winner
+        #if winner_name == "":
+        #    winner_name = candidate_name 
         #if float(candidate_list[winner_name]) < float(candidate_list[candidate_name]):
         #    winner_name = candidate_name
 
